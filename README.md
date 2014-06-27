@@ -26,7 +26,7 @@ After `deploy:restart` the task `airbrake:notify_deploy` will be executed.
 
 ## Coniguration
 
-Everything *should work* for a basic RVM setup *out of the box*.
+Everything *should work* out of the box.
 
 If you need some special settings, set those in the stage file for your server:
 
