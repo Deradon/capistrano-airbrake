@@ -1,6 +1,7 @@
 # Capistrano::Airbrake
 
-Airbrake integration for Capistrano
+Airbrake integration for Capistrano.
+Easy deploy notification for your Airbrake / Errbit.
 
 ## Installation
 
@@ -21,6 +22,19 @@ Require in Capfile to use the default task:
     require 'capistrano/rvm'
 
 And you should be good to go!
+After `deploy:restart` the task `airbrake:notify_deploy` will be executed.
+
+## Coniguration
+
+Everything *should work* for a basic RVM setup *out of the box*.
+
+If you need some special settings, set those in the stage file for your server:
+
+    # deploy.rb or stage file (staging.rb, production.rb or else)
+    set :airbrake_args,         ->{ "TO=#{fetch(:stage)} REVISION=#{fetch(:airbrake_revision)} REPO=#{fetch(:repo_url)}"  }
+    set :airbrake_environment,  ->{ fetch :rails_env, "production"   }
+    set :airbrake_revision,     ->{ fetch :current_revision, "none"  }
+    set :airbrake_roles,        ->{ :app  }
 
 ## Contributing
 
